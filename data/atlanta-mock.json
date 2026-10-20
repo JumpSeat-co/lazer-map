@@ -1,0 +1,20 @@
+{
+  "_note": "MOCK DATA for prototype only. Generalized area-level points (coordinates rounded to 0.01 degree, about 1 km). Not derived from pilot CMS records. Not a statement of real Lazer coverage.",
+  "market": { "key": "atlanta-ga", "name": "Atlanta" },
+  "points": [
+    { "id": "atl-m01", "market": "atlanta-ga", "label": "Central Atlanta Area", "lng": -84.39, "lat": 33.77 },
+    { "id": "atl-m02", "market": "atlanta-ga", "label": "North Atlanta Area", "lng": -84.38, "lat": 33.85 },
+    { "id": "atl-m03", "market": "atlanta-ga", "label": "North Metro Atlanta Area", "lng": -84.37, "lat": 33.93 },
+    { "id": "atl-m04", "market": "atlanta-ga", "label": "Northwest Metro Atlanta Area", "lng": -84.55, "lat": 33.95 },
+    { "id": "atl-m05", "market": "atlanta-ga", "label": "Far North Metro Atlanta Area", "lng": -84.29, "lat": 34.08 },
+    { "id": "atl-m06", "market": "atlanta-ga", "label": "Northeast Metro Atlanta Area", "lng": -83.99, "lat": 33.96 },
+    { "id": "atl-m07", "market": "atlanta-ga", "label": "East Atlanta Area", "lng": -84.3, "lat": 33.77 },
+    { "id": "atl-m08", "market": "atlanta-ga", "label": "East Metro Atlanta Area", "lng": -84.17, "lat": 33.81 },
+    { "id": "atl-m09", "market": "atlanta-ga", "label": "Far East Metro Atlanta Area", "lng": -84.02, "lat": 33.67 },
+    { "id": "atl-m10", "market": "atlanta-ga", "label": "Southwest Atlanta Area", "lng": -84.45, "lat": 33.65 },
+    { "id": "atl-m11", "market": "atlanta-ga", "label": "South Metro Atlanta Area", "lng": -84.35, "lat": 33.52 },
+    { "id": "atl-m12", "market": "atlanta-ga", "label": "Southwest Metro Atlanta Area", "lng": -84.58, "lat": 33.57 },
+    { "id": "atl-m13", "market": "atlanta-ga", "label": "West Atlanta Area", "lng": -84.47, "lat": 33.86 },
+    { "id": "atl-m14", "market": "atlanta-ga", "label": "West Metro Atlanta Area", "lng": -84.75, "lat": 33.75 }
+  ]
+}
