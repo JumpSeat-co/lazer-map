@@ -322,13 +322,15 @@
       var cam = state.map.cameraForBounds(state.bounds, { padding: paddingFor(canvasEl), maxZoom: opts.maxZoom });
       var fitZoom = cam ? cam.zoom : opts.singlePointZoom;
       state.map.setMinZoom(Math.max(2, fitZoom - opts.minZoomOffset));
-      state.map.setMaxBounds(limitBounds());
+      state.map.setMaxBounds(limitBounds(fitZoom));
     }
-    // Pan limit = point bounds + margin, but never smaller than ~2 viewports at maxZoom. A smaller box makes
-    // MapLibre zoom IN to satisfy it, which would break the privacy zoom cap (found by test with a 1-point market).
-    function limitBounds() {
+    // Pan limit = point bounds + margin, but never smaller than ~2 viewports at the fitted zoom (capped at maxZoom).
+    // A smaller box makes MapLibre silently zoom/recenter to satisfy it (no move event, so markers go stale) and,
+    // for a 1-point market, zoom IN past the privacy cap. Sizing it at the fitted zoom prevents both.
+    function limitBounds(fitZoom) {
       var b = expand(state.bounds, opts.boundsMargin);
-      var dpp = 360 / (512 * Math.pow(2, opts.maxZoom));
+      var z = Math.min(opts.maxZoom, isFinite(fitZoom) ? fitZoom : opts.maxZoom);
+      var dpp = 360 / (512 * Math.pow(2, z));
       var halfW = Math.max(canvasEl.clientWidth, 320) * dpp, halfH = Math.max(canvasEl.clientHeight, 320) * dpp;
       var cx = (state.bounds[0][0] + state.bounds[1][0]) / 2, cy = (state.bounds[0][1] + state.bounds[1][1]) / 2;
       return [[Math.max(-180, Math.min(b[0][0], cx - halfW)), Math.max(-85, Math.min(b[0][1], cy - halfH))],
@@ -468,7 +470,7 @@
     });
   }
 
-  global.LazerMap = { init: init, autoInit: autoInit, sanitizePoints: sanitizePoints, patchStyle: patchStyle, HARD_MAX_ZOOM: HARD_MAX_ZOOM, version: '0.1.0-prototype' };
+  global.LazerMap = { init: init, autoInit: autoInit, sanitizePoints: sanitizePoints, patchStyle: patchStyle, HARD_MAX_ZOOM: HARD_MAX_ZOOM, version: '0.2.1' };
   if (!global.LAZER_MAP_NO_AUTO && typeof document !== 'undefined') {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { autoInit(); });
     else autoInit();
